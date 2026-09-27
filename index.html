@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#1c2a24" />
+    <title>Julie Focus</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="hero">
+        <p class="eyebrow">个人专注工作台</p>
+        <h1>Julie Focus</h1>
+        <p class="date" id="today-label"></p>
+      </header>
+
+      <section class="card" aria-labelledby="mood-title">
+        <div class="card-head">
+          <h2 id="mood-title">今日状态</h2>
+          <p>先停一下，感觉今天的自己。没有对错，也不用打卡。</p>
+        </div>
+        <div class="mood-options" role="radiogroup" aria-labelledby="mood-title">
+          <label class="mood-option">
+            <input type="radio" name="today-mood" value="high" />
+            <span class="mood-emoji" aria-hidden="true">😊</span>
+            <span class="mood-name">高能量</span>
+          </label>
+          <label class="mood-option">
+            <input type="radio" name="today-mood" value="medium" />
+            <span class="mood-emoji" aria-hidden="true">😐</span>
+            <span class="mood-name">普通</span>
+          </label>
+          <label class="mood-option">
+            <input type="radio" name="today-mood" value="low" />
+            <span class="mood-emoji" aria-hidden="true">😫</span>
+            <span class="mood-name">低能量</span>
+          </label>
+        </div>
+        <p id="mood-note" class="mood-note">选一个最接近现在感受的状态就好。</p>
+      </section>
+
+      <section class="card" aria-labelledby="progress-title">
+        <div class="card-head">
+          <h2 id="progress-title">今日三个推进点</h2>
+          <p>每天自己填写。不是待办清单，而是今天真正要往前走的三件事。</p>
+        </div>
+        <div class="progress-list">
+          <label class="progress-item" for="progress-create">
+            <span class="progress-label">
+              <strong>创造</strong>
+              <em>事业 / 输出</em>
+            </span>
+            <input
+              id="progress-create"
+              type="text"
+              maxlength="80"
+              autocomplete="off"
+              placeholder="例如：拍一条视频、学 25 分钟 AI、推进项目"
+            />
+          </label>
+          <label class="progress-item" for="progress-grow">
+            <span class="progress-label">
+              <strong>成长</strong>
+              <em>提升自己</em>
+            </span>
+            <input
+              id="progress-grow"
+              type="text"
+              maxlength="80"
+              autocomplete="off"
+              placeholder="例如：英语学习、运动、阅读"
+            />
+          </label>
+          <label class="progress-item" for="progress-life">
+            <span class="progress-label">
+              <strong>生活</strong>
+              <em>家庭和重要关系</em>
+            </span>
+            <input
+              id="progress-life"
+              type="text"
+              maxlength="80"
+              autocomplete="off"
+              placeholder="例如：陪伴家人、处理一件生活事务"
+            />
+          </label>
+        </div>
+        <div class="progress-save">
+          <button id="save-progress" class="primary" type="button">保存今天的记录</button>
+          <p id="progress-status">写下今天的推进点后点保存，第二天会是空白新的一天。</p>
+        </div>
+        <div id="progress-history" class="progress-history" hidden></div>
+      </section>
+
+      <section class="card timer-card" aria-labelledby="timer-title">
+        <div class="card-head">
+          <h2 id="timer-title">专注计时器</h2>
+          <p>25 分钟，一次只做一件事</p>
+        </div>
+        <div class="ring" role="timer" aria-live="polite">
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <circle class="ring-track" cx="60" cy="60" r="52"></circle>
+            <circle class="ring-progress" id="ring-progress" cx="60" cy="60" r="52"></circle>
+          </svg>
+          <div class="time-block">
+            <strong id="time-display">25:00</strong>
+            <span id="timer-status">准备开始</span>
+          </div>
+        </div>
+        <div class="actions">
+          <button id="start-btn" class="primary" type="button">开始专注</button>
+          <button id="reset-btn" class="ghost" type="button">重置</button>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="notes-title">
+        <div class="card-head">
+          <h2 id="notes-title">灵感记录</h2>
+          <p>想到就记下，别打断专注</p>
+        </div>
+        <form id="note-form" class="note-form">
+          <div class="tags" role="group" aria-label="灵感类型">
+            <label class="tag">
+              <input type="radio" name="note-type" value="视频选题" checked />
+              视频选题
+            </label>
+            <label class="tag">
+              <input type="radio" name="note-type" value="AI学习" />
+              AI 学习
+            </label>
+            <label class="tag">
+              <input type="radio" name="note-type" value="创业想法" />
+              创业想法
+            </label>
+          </div>
+          <textarea id="note-text" rows="3" maxlength="240" placeholder="写下选题、学习计划或创业灵感..." required></textarea>
+          <button class="primary" type="submit">保存灵感</button>
+        </form>
+        <ul id="note-list" class="note-list"></ul>
+      </section>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
